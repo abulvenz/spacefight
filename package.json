@@ -1,0 +1,29 @@
+{
+  "name": "spacefight",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "marked": "^0.5.2",
+    "mini.css": "^3.0.1",
+    "mithril": "^1.1.6",
+    "morgan": "^1.9.1",
+    "tagl-mithril": "^1.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abulvenz/spacefight.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abulvenz/spacefight/issues"
+  },
+  "homepage": "https://github.com/abulvenz/spacefight#readme"
+}
