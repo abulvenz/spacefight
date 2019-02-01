@@ -123,7 +123,7 @@ const PlayerView = vnode => {
 
 const PlayerData = () => {
   return {
-    programText: "return ()=>Math.random()<.3?Options.SHOOT:Math.random<.5?Options.TURN_LEFT:Options.TURN_RIGHT",
+    programText: "return ()=>Math.random()<.3?Options.SHOOT:Math.random()<.5?Options.TURN_LEFT:Options.TURN_RIGHT",
     color: "green",
     name: ""
   };
