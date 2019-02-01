@@ -1,0 +1,44 @@
+@import 'normalize.css';
+
+.gamefield {
+    display: grid;
+    /*   grid-template-columns: 4% 4% 4% 4% 4% 4% 4% 4% 4% 4% 4% 4% 4%;*/
+    grid-template-columns: 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px;
+    grid-gap: 1px;
+    grid-row-gap: 1px;
+    background-color: #fff;
+    color: #444;
+}
+
+.field {
+    width: 30px;
+    height: 30px;
+    background-color: blue
+}
+
+.player-setup {
+    width:50%;
+    float: left;
+}
+
+textarea {
+    width: 100%;
+    height: 70vh
+}
+
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /*font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/
+}
+
+h1 {
+    margin-left:12px 
+}
+
+.fancy{
+    background-color: #f60000;
+}
+
+p {    
+    margin: 20px 20px 20px 20px;
+}

@@ -9,10 +9,13 @@
     "mini.css": "^3.0.1",
     "mithril": "^1.1.6",
     "morgan": "^1.9.1",
+    "normalize.css": "^8.0.1",
+    "parcel-bundler": "^1.11.0",
     "tagl-mithril": "^1.0.4"
   },
   "devDependencies": {},
   "scripts": {
+    "start": "parcel frontend/index.html",
     "test": "mocha"
   },
   "repository": {
