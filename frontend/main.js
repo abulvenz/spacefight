@@ -14,7 +14,8 @@ const {
   textarea,
   h1,
   text,
-  hr
+  hr,
+  line
 } = tagl(m);
 
 const Options = Object.freeze({
@@ -38,7 +39,18 @@ const Player = color => {
     x > innerWidth && (x -= innerWidth);
     y > innerHeight && (y -= innerHeight);
   };
-  const shoot = () => {};
+  const shoot = opp => {
+    let ex = Math.cos((angle / 180) * Math.PI);
+    let ey = Math.sin((angle / 180) * Math.PI);
+    let dx = opp.x() - x;
+    let dy = opp.y() - y;
+    let d = Math.sqrt(dx * dx + dy * dy);
+    let s = (ex * dx + ey * dy) / Math.max(d, 1);
+    line({x1:x+ex*v,y1:y+ey*v,x2:x+ex*1000,y2:y+ey*1000});
+    if (s > 0.99) {
+      opp.explode();
+    }
+  };
   const turnLeft = () => {
     angle += 5;
   };
@@ -46,12 +58,20 @@ const Player = color => {
     angle -= 5;
   };
 
+  let neutralize = () =>{return { x1: 0, y1: 0, x2: 0, y2: 0 }};
+
+  let shot = neutralize();
+  let line = ({ x1, y1, x2, y2 }) => (shot = { x1, y1, x2, y2 });
+
   return {
     color: () => color,
     x: () => x,
     y: () => y,
+    explode: () => (v = 0),
     angle: () => angle,
-    next: option => {
+    line: () => shot,
+    next: (option, opp) => {
+      neutralize();
       switch (option) {
         case Options.TURN_LEFT:
           turnLeft();
@@ -60,7 +80,7 @@ const Player = color => {
           turnRight();
           break;
         case Options.SHOOT:
-          shoot();
+          shoot(opp);
           break;
         case Options.NOTHING:
         default:
@@ -83,7 +103,8 @@ const PlayerView = vnode => {
   return {
     view(vnode) {
       let p = vnode.attrs.player;
-      return g(
+      let l = p.line();
+      return [g(
         { transform: `translate(${p.x()},${p.y()})rotate(${p.angle()})` },
         rect({
           x: -5,
@@ -92,15 +113,17 @@ const PlayerView = vnode => {
           height: 10,
           fill: p.color(),
           stroke: p.color()
-        })
-      );
+        }),        
+      ),
+        line({...l,style:"stroke:rgb(255,0,0);stroke-width:2",})
+    ];
     }
   };
 };
 
 const PlayerData = () => {
   return {
-    programText: "",
+    programText: "return ()=>Math.random()<.3?Options.SHOOT:Math.random<.5?Options.TURN_LEFT:Options.TURN_RIGHT",
     color: "green",
     name: ""
   };
@@ -115,17 +138,19 @@ const GameService = () => {
     player2,
     started: () => started,
     evaluate() {
-      player1.f = new Function("p", "o", "Options", player1.programText);
-      player2.f = new Function("p", "o", "Options", player2.programText);
+      player1.f = new Function("Options", player1.programText)(Options);
+      player2.f = new Function("Options", player2.programText)(Options);
     },
     run() {
       started = true;
       setTimeout(() => {
         time += step;
-        p1.next(player1.f(p1, p2, Options));
-        p2.next(player2.f(p2, p1, Options));
-        if (time > 5000) {started = false;time = 0;}
-        else game.run();
+        p1.next(player1.f(p1, p2, Options), p2);
+        p2.next(player2.f(p2, p1, Options), p1);
+        if (time > 15000) {
+          started = false;
+          time = 0;
+        } else game.run();
         m.redraw();
       }, step);
     }
