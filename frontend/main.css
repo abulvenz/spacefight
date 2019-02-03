@@ -1,5 +1,4 @@
 @import 'normalize.css';
-
 .gamefield {
     display: grid;
     /*   grid-template-columns: 4% 4% 4% 4% 4% 4% 4% 4% 4% 4% 4% 4% 4%;*/
@@ -17,7 +16,7 @@
 }
 
 .player-setup {
-    width:50%;
+    width: 50%;
     float: left;
 }
 
@@ -26,19 +25,189 @@ textarea {
     height: 70vh
 }
 
-body{
+body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     /*font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/
 }
 
 h1 {
-    margin-left:12px 
+    margin-left: 12px
 }
 
-.fancy{
+.fancy {
     background-color: #f60000;
+    font-size: 12pt;
 }
 
-p {    
+p {
     margin: 20px 20px 20px 20px;
 }
+
+svg{
+    background-color: black
+}
+
+#ex00 {
+    /*    width: 64px;
+    height: 64px;*/
+    left: 0px;
+    background: url(images/explosion_5x64x5x64.png) 0 0;
+}
+
+#ex01 {
+    width: 64px;
+    height: 64px;
+    background: url(images/explosion_5x64x5x64.png) -64px 0;
+}
+
+#ex02 {
+    width: 64px;
+    height: 64px;
+    background: url(images/explosion_5x64x5x64.png) -128px 0;
+}
+
+#ex03 {
+    width: 64px;
+    height: 64px;
+    background: url(images/explosion_5x64x5x64.png) -192px 0;
+}
+
+#ex04 {
+    width: 64px;
+    height: 64px;
+    background: url(images/explosion_5x64x5x64.png) -256px 0;
+}
+
+/***/
+
+#ex05 {
+    /*    width: 64px;
+        height: 64px;*/
+    left: 0px;
+    background: url(images/explosion_5x64x5x64.png) 0 -64px;
+}
+
+#ex06 {
+    width: 64px;
+    height: 64px;
+    background: url(images/explosion_5x64x5x64.png) -64px -64px;
+}
+
+#ex07 {
+    width: 64px;
+    height: 64px;
+    background: url(images/explosion_5x64x5x64.png) -128px -64px;
+}
+
+#ex08 {
+    width: 64px;
+    height: 64px;
+    background: url(images/explosion_5x64x5x64.png) -192px -64px;
+}
+
+#ex09 {
+    width: 64px;
+    height: 64px;
+    background: url(images/explosion_5x64x5x64.png) -256px -64px;
+}
+
+/***/
+
+#ex10 {
+    /*    width: 64px;
+            height: 64px;*/
+    left: 0px;
+    background: url(images/explosion_5x64x5x64.png) 0 -128px;
+}
+
+#ex11 {
+    width: 64px;
+    height: 64px;
+    background: url(images/explosion_5x64x5x64.png) -64px -128px;
+}
+
+#ex12 {
+    width: 64px;
+    height: 64px;
+    background: url(images/explosion_5x64x5x64.png) -128px -128px;
+}
+
+#ex13 {
+    width: 64px;
+    height: 64px;
+    background: url(images/explosion_5x64x5x64.png) -192px -128px;
+}
+
+#ex14 {
+    width: 64px;
+    height: 64px;
+    background: url(images/explosion_5x64x5x64.png) -256px -128px;
+}
+
+/***/
+
+#ex15 {
+    /*    width: 64px;
+                height: 64px;*/
+    left: 0px;
+    background: url(images/explosion_5x64x5x64.png) 0 -192px;
+}
+
+#ex16 {
+    width: 64px;
+    height: 64px;
+    background: url(images/explosion_5x64x5x64.png) -64px -192px;
+}
+
+#ex17 {
+    width: 64px;
+    height: 64px;
+    background: url(images/explosion_5x64x5x64.png) -128px -192px;
+}
+
+#ex18 {
+    width: 64px;
+    height: 64px;
+    background: url(images/explosion_5x64x5x64.png) -192px -192px;
+}
+
+#ex19 {
+    width: 64px;
+    height: 64px;
+    background: url(images/explosion_5x64x5x64.png) -256px -192px;
+}
+
+/***/
+
+#ex20 {
+    /*    width: 64px;
+                    height: 64px;*/
+    left: 0px;
+    background: url(images/explosion_5x64x5x64.png) 0 -256px;
+}
+
+#ex21 {
+    width: 64px;
+    height: 64px;
+    background: url(images/explosion_5x64x5x64.png) -64px -256px;
+}
+
+#ex22 {
+    width: 64px;
+    height: 64px;
+    background: url(images/explosion_5x64x5x64.png) -128px -256px;
+}
+
+#ex23 {
+    width: 64px;
+    height: 64px;
+    background: url(images/explosion_5x64x5x64.png) -192px -256px;
+}
+
+#ex24 {
+    width: 64px;
+    height: 64px;
+    background: url(images/explosion_5x64x5x64.png) -256px -256px;
+}
+
+

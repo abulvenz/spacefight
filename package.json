@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "express": "^4.16.4",
+    "images": "^3.0.2",
     "marked": "^0.5.2",
     "mini.css": "^3.0.1",
     "mithril": "^1.1.6",
