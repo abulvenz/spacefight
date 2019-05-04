@@ -1,10 +1,34 @@
+import images from "images/*.png";
 import m from "mithril";
 import tagl from "tagl-mithril";
-import fn from "./fn";
-import images from "images/*.png";
 
 // `ex${('00'.substr(0,2-String(p.burn()).length))+p.burn()}`
 let exid = n => `#ex${"00".substring(0, 2 - String(n).length) + String(n)}`;
+
+let shootLength = 100;
+
+let onePlayer = `
+return (p,o)=>{
+  let dx = p.x() - o.x();
+     let dy = p.y() - o.y();
+
+let pa = p.angle()%360.0
+
+  let a = (Math.atan2(dy,dx)*180/Math.PI)+180
+
+let da = a-pa;
+
+
+if(Math.abs(da)<5)return Options.SHOOT
+
+  if (da > 3) return Options.TURN_LEFT
+ if (da < 3) return Options.TURN_RIGHT
+
+
+  return Options.SHOOT
+}
+`;
+
 
 console.log(exid(53));
 const {
@@ -60,10 +84,10 @@ const Player = color => {
     line({
       x1: x + e1x * v,
       y1: y + e1y * v,
-      x2: x + e1x * 1000,
-      y2: y + e1y * 1000
+      x2: x + e1x * shootLength,
+      y2: y + e1y * shootLength
     });
-    if (s1 > 0 && Math.abs(s2) < 5 && d < 1000) {
+    if (s1 > 0 && Math.abs(s2) < 5 && d < shootLength) {
       opp.explode();
     }
   };
@@ -89,13 +113,16 @@ const Player = color => {
     y: () => y,
     v: () => v,
     explode: () => {
+      if (burn<0) {
       v = 0;
       burn = 0;
       console.log("I have been hit!");
+      }
     },
     angle: () => angle,
     line: () => shot,
     burn: () => burn,
+    destroyed: () => burn > 25,
     next: (option, opp) => {
       shot = neutralize();
       if (burn > -1) {
@@ -136,6 +163,7 @@ const PlayerView = vnode => {
       let p = vnode.attrs.player;
       let l = p.line();
       return [
+        p.destroyed()?null:
         g(
           { transform: `translate(${p.x()},${p.y()})rotate(${p.angle()})` },
           rect({
@@ -180,12 +208,17 @@ const PlayerData = () => {
 const GameService = () => {
   let player1 = PlayerData();
   let player2 = PlayerData();
+  player1.programText = localStorage.getItem("player1") || player1.programText;
+  player2.programText = localStorage.getItem("player2") || player1.programText;
   let started = false;
   return {
     player1,
     player2,
     started: () => started,
     evaluate() {
+      localStorage.setItem("player1", player1.programText);
+      localStorage.setItem("player2", player2.programText);
+
       player1.f = new Function("Options", player1.programText)(Options);
       player2.f = new Function("Options", player2.programText)(Options);
     },
